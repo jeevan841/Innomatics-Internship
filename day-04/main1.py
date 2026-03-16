@@ -106,17 +106,6 @@ def filter_products_logic(category=None, min_price=None,
 
 # ══ ENDPOINTS ═════════════════════════════════════════════════════
 
-#
-
-# ROUTE ORDER RULE — FastAPI reads top to bottom, first match wins:
-
-#   Fixed word routes   (/filter /compare /summary /add /checkout)
-
-#   must come BEFORE variable routes (/{product_id} / /{any_id})
-
-#
-
-# ═════════════════════════════════════════════════════════════════
 
 # ── DAY 1 — Home + Products list ──────────────────────────────────
 
