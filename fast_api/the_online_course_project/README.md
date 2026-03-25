@@ -16,6 +16,7 @@ cd the-online-course-project
 
 # step-2:-Create a virtual environment
 python -m venv venv
+
 for Windows: venv\Scripts\activate
 
 # step-3:-Install dependencies
