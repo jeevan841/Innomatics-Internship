@@ -269,6 +269,211 @@ def delete_product(product_id: int, response: Response):
 
  
 
+# ══════════════════════════════════════════════════════════════════
+# ── DAY 6 — Search, Sort, Pagination (Q1–Q6 + Bonus) ─────────────
+# NOTE: All fixed routes go ABOVE /products/{product_id}
+# ══════════════════════════════════════════════════════════════════
+
+# ── Q1 — Search products by keyword ───────────────────────────────
+
+@app.get('/products/search')
+
+def search_products(keyword: str = Query(..., description='Word to search in product names')):
+
+    matched = [p for p in products if keyword.lower() in p['name'].lower()]
+
+    if not matched:
+
+        return {'message': f'No products found for: {keyword}'}
+
+    return {
+
+        'keyword':     keyword,
+
+        'total_found': len(matched),
+
+        'products':    matched,
+
+    }
+
+ 
+
+# ── Q2 — Sort products by price or name ───────────────────────────
+
+@app.get('/products/sort')
+
+def sort_products(
+
+    sort_by: str = Query('price', description="'price' or 'name'"),
+
+    order:   str = Query('asc',   description="'asc' or 'desc'"),
+
+):
+
+    if sort_by not in ('price', 'name'):
+
+        return {'error': "sort_by must be 'price' or 'name'"}
+
+    if order not in ('asc', 'desc'):
+
+        return {'error': "order must be 'asc' or 'desc'"}
+
+    reverse  = (order == 'desc')
+
+    key_func = (lambda p: p['price']) if sort_by == 'price' else (lambda p: p['name'].lower())
+
+    sorted_products = sorted(products, key=key_func, reverse=reverse)
+
+    return {
+
+        'sort_by':  sort_by,
+
+        'order':    order,
+
+        'products': sorted_products,
+
+    }
+
+ 
+
+# ── Q3 — Paginate products ────────────────────────────────────────
+
+@app.get('/products/page')
+
+def paginate_products(
+
+    page:  int = Query(1, ge=1, description='Page number (starts at 1)'),
+
+    limit: int = Query(2, ge=1, description='Products per page'),
+
+):
+
+    total       = len(products)
+
+    total_pages = (total + limit - 1) // limit
+
+    skip        = (page - 1) * limit
+
+    page_items  = products[skip: skip + limit]
+
+    return {
+
+        'page':        page,
+
+        'limit':       limit,
+
+        'total_found': total,
+
+        'total_pages': total_pages,
+
+        'products':    page_items,
+
+    }
+
+ 
+
+# ── Q5 — Sort products by category then price ─────────────────────
+
+@app.get('/products/sort-by-category')
+
+def sort_by_category():
+
+    sorted_products = sorted(products, key=lambda p: (p['category'].lower(), p['price']))
+
+    grouped = {}
+
+    for p in sorted_products:
+
+        cat = p['category']
+
+        grouped.setdefault(cat, []).append(p)
+
+    return {
+
+        'sort':     'category A→Z, then price asc',
+
+        'grouped':  grouped,
+
+        'products': sorted_products,
+
+    }
+
+ 
+
+# ── Q6 — Browse: Search + Sort + Paginate in one endpoint ─────────
+
+@app.get('/products/browse')
+
+def browse_products(
+
+    keyword: str = Query(None,    description='Filter by name keyword (optional)'),
+
+    sort_by: str = Query('price', description="'price' or 'name'"),
+
+    order:   str = Query('asc',   description="'asc' or 'desc'"),
+
+    page:    int = Query(1, ge=1, description='Page number'),
+
+    limit:   int = Query(4, ge=1, description='Items per page'),
+
+):
+
+    if sort_by not in ('price', 'name'):
+
+        return {'error': "sort_by must be 'price' or 'name'"}
+
+    if order not in ('asc', 'desc'):
+
+        return {'error': "order must be 'asc' or 'desc'"}
+
+    # Step 1 — filter
+
+    result = products
+
+    if keyword:
+
+        result = [p for p in result if keyword.lower() in p['name'].lower()]
+
+    # Step 2 — sort
+
+    reverse  = (order == 'desc')
+
+    key_func = (lambda p: p['price']) if sort_by == 'price' else (lambda p: p['name'].lower())
+
+    result   = sorted(result, key=key_func, reverse=reverse)
+
+    # Step 3 — paginate
+
+    total_found = len(result)
+
+    total_pages = (total_found + limit - 1) // limit if total_found else 1
+
+    skip        = (page - 1) * limit
+
+    page_items  = result[skip: skip + limit]
+
+    return {
+
+        'keyword':     keyword,
+
+        'sort_by':     sort_by,
+
+        'order':       order,
+
+        'page':        page,
+
+        'limit':       limit,
+
+        'total_found': total_found,
+
+        'total_pages': total_pages,
+
+        'products':    page_items,
+
+    }
+
+ 
+
 # ── DAY 1 — Get single product (variable route — always LAST) ─────
 
 @app.get('/products/{product_id}')
@@ -336,6 +541,66 @@ def place_order(order_data: OrderRequest):
 def get_all_orders():
 
     return {'orders': orders, 'total_orders': len(orders)}
+
+ 
+
+# ── Q4 — Search orders by customer name ───────────────────────────
+
+@app.get('/orders/search')
+
+def search_orders(customer_name: str = Query(..., description='Customer name to search')):
+
+    matched = [o for o in orders if customer_name.lower() in o['customer_name'].lower()]
+
+    if not matched:
+
+        return {'message': f'No orders found for customer: {customer_name}'}
+
+    return {
+
+        'customer_name': customer_name,
+
+        'total_found':   len(matched),
+
+        'orders':        matched,
+
+    }
+
+ 
+
+# ── BONUS — Paginate orders list ──────────────────────────────────
+
+@app.get('/orders/page')
+
+def paginate_orders(
+
+    page:  int = Query(1, ge=1, description='Page number'),
+
+    limit: int = Query(3, ge=1, description='Orders per page'),
+
+):
+
+    total       = len(orders)
+
+    total_pages = (total + limit - 1) // limit if total else 1
+
+    skip        = (page - 1) * limit
+
+    page_items  = orders[skip: skip + limit]
+
+    return {
+
+        'page':         page,
+
+        'limit':        limit,
+
+        'total_orders': total,
+
+        'total_pages':  total_pages,
+
+        'orders':       page_items,
+
+    }
 
  
 
