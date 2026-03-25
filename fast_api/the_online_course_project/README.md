@@ -1,6 +1,6 @@
 Structure:-
 
-fastapi-online-course-platform/\
+fastapi-online-course-platform\
 │\
 ├── main.py              # All 20 API endpoints\
 ├── requirements.txt     # Dependencies\
