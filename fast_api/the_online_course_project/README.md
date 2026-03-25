@@ -1,4 +1,4 @@
-Structure:-
+##Structure:-
 
 fastapi-online-course-platform\
 │\
@@ -7,7 +7,7 @@ fastapi-online-course-platform\
 ├── README.md            # Project documentation\
 └── screenshots/         # Swagger UI screenshots (Q1–Q20)\
 
-Setup And Running:-
+##Setup And Running:-
 
 # step-1:-Clone the repository
 git clone https://github.com/
