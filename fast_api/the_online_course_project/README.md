@@ -2,10 +2,10 @@ Structure:-
 
 fastapi-online-course-platform/
 │
-├── main.py              # All 20 API endpoints
-├── requirements.txt     # Dependencies
-├── README.md            # Project documentation
-└── screenshots/         # Swagger UI screenshots (Q1–Q20)
+├── main.py              # All 20 API endpoints\n
+├── requirements.txt     # Dependencies\n
+├── README.md            # Project documentation\n
+└── screenshots/         # Swagger UI screenshots (Q1–Q20)\n
 
 Setup And Running:-
 
