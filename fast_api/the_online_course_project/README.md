@@ -10,7 +10,7 @@ fastapi-online-course-platform\
 # Setup And Running:-
 
 # step-1:-Clone the repository
-git clone https://github.com/
+git clone https://github.com/jeevan841/Innomatics-Internship/tree/main/fast_api/the_online_course_project
 cd the-online-course-project
 
 # step-2:-Create a virtual environment
