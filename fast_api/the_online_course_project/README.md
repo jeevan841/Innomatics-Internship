@@ -5,20 +5,20 @@ fastapi-online-course-platform\
 ├── main.py              # All 20 API endpoints\
 ├── requirements.txt     # Dependencies\
 ├── README.md            # Project documentation\
-└── screenshots/         # Swagger UI screenshots (Q1–Q20)\
+└── screenshots          # Swagger UI screenshots (Q1–Q20)\
 
 # Setup And Running:-
 
 # step-1:-Clone the repository
-git clone https://github.com/jeevan841/Innomatics-Internship/tree/main/fast_api/the_online_course_project
-cd the-online-course-project
+git clone https://github.com/jeevan841/Innomatics-Internship/tree/main/fast_api/the_online_course_project\
+cd the-online-course-project\
 
 # step-2:-Create a virtual environment
-python -m venv venv
-for Windows: venv\Scripts\activate
+python -m venv venv\
+for Windows: venv\Scripts\activate\
 
 # step-3:-Install dependencies
-pip install -r requirements.txt
+pip install -r requirements.txt\
 
 # step-4:-Run the server
-unicorn main:app --reload
+unicorn main:app --reload\
