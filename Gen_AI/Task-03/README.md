@@ -71,6 +71,7 @@ resume-screening-ai/
 │
 ├── main.py
 ├── requirements.txt
+├── report.pdf
 ├── .env (not included)
 └── README.md
 ```
