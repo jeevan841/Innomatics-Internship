@@ -48,31 +48,31 @@ Resume → Extraction → Matching → Scoring → Explanation
 ---
 
 ## 📂 Project Structure
-resume-screening-ai/
+resume-screening-ai/\n
 │
-├── prompts/
-│ ├── extract_prompt.py
-│ ├── match_prompt.py
-│ ├── score_prompt.py
-│ └── explain_prompt.py
+├── prompts/\n
+│ ├── extract_prompt.py\n
+│ ├── match_prompt.py\n
+│ ├── score_prompt.py\n
+│ └── explain_prompt.py\n
 │
-├── chains/
-│ ├── extract_chain.py
-│ ├── match_chain.py
-│ ├── score_chain.py
-│ └── explain_chain.py
+├── chains/\n
+│ ├── extract_chain.py\n
+│ ├── match_chain.py\n
+│ ├── score_chain.py\n
+│ └── explain_chain.py\n
 │
-├── data/
-│ ├── strong.txt
-│ ├── average.txt
-│ ├── weak.txt
-│ └── job_description.txt
+├── data/\n
+│ ├── strong.txt\n
+│ ├── average.txt\n
+│ ├── weak.txt\n
+│ └── job_description.txt\n
 │
-├── main.py
-├── requirements.txt
-├── .env (not included)
-└── README.md
-
+├── main.py\n
+├── requirements.txt\n
+├── .env (not included)\n
+└── README.md\n
+\n
 ---
 
 ## ⚙️ Installation
