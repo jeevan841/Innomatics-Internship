@@ -1,0 +1,14 @@
+Experience:
+- Fresher
+
+Skills:
+- Basic Python, Excel
+
+Tools:
+- MS Excel
+
+Projects:
+- Created simple reports using Excel
+
+Education:
+- B.Com

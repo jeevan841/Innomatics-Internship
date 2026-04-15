@@ -1,0 +1,16 @@
+Experience:
+- 4 years as a Data Scientist
+
+Skills:
+- Python, SQL, Machine Learning, Deep Learning, NLP, Statistics
+
+Tools:
+- TensorFlow, PyTorch, Scikit-learn, Pandas, NumPy
+
+Projects:
+- Built NLP-based chatbot using Transformers
+- Developed predictive models for customer churn
+- Deployed ML models using Flask
+
+Education:
+- B.Tech in Computer Science

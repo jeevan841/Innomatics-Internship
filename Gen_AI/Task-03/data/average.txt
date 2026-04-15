@@ -1,0 +1,15 @@
+Experience:
+- 2 years as a Data Analyst
+
+Skills:
+- Python, SQL, Data Analysis, Machine Learning (basic)
+
+Tools:
+- Pandas, NumPy, Scikit-learn
+
+Projects:
+- Built data dashboards using Python
+- Performed data cleaning and analysis
+
+Education:
+- B.Sc in Statistics
